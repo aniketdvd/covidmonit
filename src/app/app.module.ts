@@ -6,13 +6,15 @@ import { CovidApiService } from './covid-api.service';
 import { NavComponent } from './nav/nav.component';
 import { HeaderComponent } from './header/header.component';
 import { AdvisoriesComponent } from './advisories/advisories.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     HeaderComponent,
-    AdvisoriesComponent
+    AdvisoriesComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
