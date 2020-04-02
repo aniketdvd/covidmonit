@@ -12,10 +12,6 @@ export class AppComponent implements OnInit {
 
   title = 'covid-monit';
 
-  testing = () => {
-    this.covidMonit.globalTotal().subscribe(data => console.log(data));
-  }
-
   ngOnInit() {
 
   }

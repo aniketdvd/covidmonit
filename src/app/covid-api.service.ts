@@ -14,57 +14,33 @@ export class CovidApiService {
   // private globalTodaySource = '';
 
   private lastRecordDate(): any {
-      this.http.get(this.lastRecordDateSource)
-      .toPromise()
-      .then(
-          data => {
-              return data;
-          }
-      );
+    return this.http.get(this.lastRecordDateSource);
   }
 
   public countryTotal(countryIso: string): any {
-      this.http.get(
-          'https://covidapi.info/api/v1/country/' +
-          countryIso +
-          '/latest'
-      )
-      .toPromise()
-      .then(
-          data => {
-              return data;
-          }
-      );
+    return this.http.get(
+        'https://covidapi.info/api/v1/country/' +
+        countryIso +
+        '/latest'
+    );
   }
 
   public countryToday(countryIso: string): any {
-      this.http.get(
-          'https://covidapi.info/api/v1/country/' +
-          countryIso +
-          '/' + this.lastRecordDate()
-      )
-      .toPromise()
-      .then(
-          data => {
-              return data;
-          }
-      );
+    return this.http.get(
+        'https://covidapi.info/api/v1/country/' +
+        countryIso +
+        '/' + this.lastRecordDate()
+    );
   }
 
   public globalTotal(): any {
-      return this.http.get('https://covidapi.info/api/v1/global');
+    return this.http.get('https://covidapi.info/api/v1/global');
   }
 
   public globalToday(countryIso: string): any {
-      this.http.get(
-          'https://covidapi.info/api/v1/global/' +
-          this.lastRecordDate()
-      )
-      .toPromise()
-      .then(
-          data => {
-              return data;
-          }
-      );
+    return this.http.get(
+        'https://covidapi.info/api/v1/global/' +
+        this.lastRecordDate()
+    );
   }
 }
