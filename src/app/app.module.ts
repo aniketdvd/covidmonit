@@ -21,6 +21,12 @@ import { FooterComponent } from './footer/footer.component';
     HttpClientModule
   ],
   providers: [CovidApiService],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent,
+    NavComponent,
+    HeaderComponent,
+    AdvisoriesComponent,
+    FooterComponent
+  ]
 })
 export class AppModule { }
