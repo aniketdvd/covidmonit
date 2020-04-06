@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CovidApiService } from './covid-api.service';
+// import { HttpClient } from '@angular/common/http';
 import Countries from './ISO-3166.json';
 
 @Component({
@@ -8,11 +9,36 @@ import Countries from './ISO-3166.json';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  constructor(private covidMonit: CovidApiService) {  }
+  lastUpdate = {};
+  dStats = {};
+  constructor(private covidMonit: CovidApiService) {
+    this.covidMonit.globalTotal().subscribe(
+      (dat) => this.lastUpdate = dat
+    );
+    // console.log(this.globalLatest);
+  }
   countries = [];
   title = 'covid-monit';
+
+  // statsOfTime(value) {
+  //   if (value === 'today') {
+  //     this.covidMonit.globalToday(this.lastUpdate).subscribe((dat) => {
+  //       // console.log(dat);
+  //       this.dStats = dat;
+  //     });
+  //   } else {
+  //     this.covidMonit.globalTotal().subscribe((dat) => {
+  //       // console.log(dat);
+  //       this.dStats = dat;
+  //     });
+  //   }
+  // }
+
   ngOnInit() {
     this.countries = Countries;
-    console.log(Countries[0].name);
+    this.covidMonit.globalTotal().subscribe((dat) => {
+      // console.log(dat);
+      this.dStats = dat;
+    });
   }
 }

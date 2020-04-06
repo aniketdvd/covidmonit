@@ -1,10 +1,41 @@
 <main>
-  <select name="when" id="when">
-    <option value="allTime">All time</option>
-    <option value="today">Today</option>
-  </select>
-  <input list="countries" type="text">
-  <datalist id="countries">
-    <option *ngFor="let country of countries" value="{{ country['alpha-3'] }}">{{ country['name'] }}</option>
-  </datalist>
+  <form action="">
+    <div class="stat-selector">
+      <select name="when" id="when" disabled class="selector">
+        <option value="allTime">All time</option>
+        <option value="today">Today</option>
+      </select>
+      <input list="countries" type="text" value="Global" disabled class="selector">
+      <datalist id="countries">
+        <option *ngFor="let country of countries" value="{{ country['alpha-3'] }}">{{ country['name'] }}</option>
+      </datalist>
+    </div>
+  </form>
+<div class="row">
+  <div class="col-md-6">
+    <div class="stats">
+      <div class="stat">
+        <h5>
+          Confirmed Cases
+        </h5>
+          <h2 class="text-warning">{{ dStats['result']['confirmed'] }}</h2>
+      </div>
+      <div class="stat">
+        <h5>
+          Recovered
+        </h5>
+          <h2 class="text-success">{{ dStats['result']['recovered'] }}</h2>
+      </div>
+      <div class="stat">
+        <h5>
+          Deaths
+        </h5>
+          <h2 class="text-danger">{{ dStats['result']['deaths'] }}</h2>
+      </div>
+  </div>
+</div>
+<div class="col-md-6">
+  <app-advisories></app-advisories>
+</div>
+</div>
 </main>

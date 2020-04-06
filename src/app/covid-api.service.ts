@@ -5,6 +5,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class CovidApiService {
+  private LastRecordDate;
+
   constructor(private http: HttpClient) {}
 
   private lastRecordDateSource = 'https://covidapi.info/api/v1/latest-date';
@@ -34,13 +36,14 @@ export class CovidApiService {
   }
 
   public globalTotal(): any {
+    // this.http.get(this.globalTotalSource);
     return this.http.get('https://covidapi.info/api/v1/global');
   }
 
-  public globalToday(countryIso: string): any {
+  public globalToday(date): any {
     return this.http.get(
         'https://covidapi.info/api/v1/global/' +
-        this.lastRecordDate()
+        date
     );
   }
 }
