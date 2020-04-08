@@ -5,45 +5,48 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class CovidApiService {
-  private LastRecordDate;
+  // public LastRecordDate;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    // this.http.get(this.lastRecordDateSource)
+    // .subscribe(
+    //   (dat) => this.LastRecordDate = '\'' + dat + '\''
+    // );
+  }
 
-  private lastRecordDateSource = 'https://covidapi.info/api/v1/latest-date';
+  public lastRecordDateSource = 'https://covidapi.info/api/v1/latest-date';
   // private countryTotalSource = '';
   // private countryTodayource = '';
   private globalTotalSource = 'https://covidapi.info/api/v1/global';
   // private globalTodaySource = '';
 
-  private lastRecordDate(): any {
-    return this.http.get(this.lastRecordDateSource);
-  }
+  // public lastRecordDate(): any {
+  //   return this.http.get(this.lastRecordDateSource);
+  // }
 
-  public countryTotal(countryIso: string): any {
+  public countryTotal(countryIso): any {
     return this.http.get(
-        'https://covidapi.info/api/v1/country/' +
-        countryIso +
-        '/latest'
+        'https://covidapi.info/api/v1/country/' + countryIso + '/latest'
     );
   }
 
-  public countryToday(countryIso: string): any {
-    return this.http.get(
-        'https://covidapi.info/api/v1/country/' +
-        countryIso +
-        '/' + this.lastRecordDate()
-    );
-  }
+  // public countryToday(countryIso: any): any {
+  //   return this.http.get(
+  //       'https://covidapi.info/api/v1/country/' +
+  //       countryIso +
+  //       '/' + this.LastRecordDate
+  //   );
+  // }
 
   public globalTotal(): any {
     // this.http.get(this.globalTotalSource);
     return this.http.get('https://covidapi.info/api/v1/global');
   }
 
-  public globalToday(date): any {
-    return this.http.get(
-        'https://covidapi.info/api/v1/global/' +
-        date
-    );
-  }
+  // public globalToday(date): any {
+  //   return this.http.get(
+  //       'https://covidapi.info/api/v1/global/' +
+  //       date
+  //   );
+  // }
 }

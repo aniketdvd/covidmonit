@@ -26,3 +26,13 @@ main {
   font-weight: 900;
   font-size: 72pt;
 }
+
+.selector {
+  width: 200px;
+  height: 40px;
+  box-sizing: border-box;
+}
+
+.selector:nth-child(odd) {
+  width: 100px;
+}

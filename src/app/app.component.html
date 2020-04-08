@@ -1,14 +1,18 @@
 <main>
   <form action="">
     <div class="stat-selector">
-      <select name="when" id="when" disabled class="selector">
+      <select name="when" id="when" class="selector" disabled>
         <option value="allTime">All time</option>
         <option value="today">Today</option>
       </select>
-      <input list="countries" type="text" value="Global" disabled class="selector">
+      <!-- <input list="countries" type="text" value="Global" (change)="changeStats($event)" class="selector">
       <datalist id="countries">
-        <option *ngFor="let country of countries" value="{{ country['alpha-3'] }}">{{ country['name'] }}</option>
-      </datalist>
+        <option *ngFor="let country of countries" [value]="country['alpha-3']" value="{{ country['alpha-3'] }}">{{ country['name'] }}</option>
+      </datalist> -->
+      <select class="selector" (change) = "changeStats($event)">
+        <option value="global">Global</option>
+        <option *ngFor="let country of countries" [value]="country['alpha-3']" value="{{ country['alpha-3'] }}">({{ country['alpha-3'] }}) {{ country['name'] }}</option>
+      </select>
     </div>
   </form>
 <div class="row">
@@ -18,19 +22,19 @@
         <h5>
           Confirmed Cases
         </h5>
-          <h2 class="text-warning">{{ dStats['result']['confirmed'] }}</h2>
+          <h2 class="text-warning">{{ covidMonitStats.confirmed }}</h2>
       </div>
       <div class="stat">
         <h5>
           Recovered
         </h5>
-          <h2 class="text-success">{{ dStats['result']['recovered'] }}</h2>
+          <h2 class="text-success">{{ covidMonitStats.recovered }}</h2>
       </div>
       <div class="stat">
         <h5>
           Deaths
         </h5>
-          <h2 class="text-danger">{{ dStats['result']['deaths'] }}</h2>
+          <h2 class="text-danger">{{ covidMonitStats.deaths }}</h2>
       </div>
   </div>
 </div>
