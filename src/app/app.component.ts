@@ -39,6 +39,12 @@ export class AppComponent implements OnInit {
           .result[this.lastUpdate].recovered;
           this.covidMonitStats.deaths    = dat
           .result[this.lastUpdate].deaths;
+        },
+        (err) => {
+          alert('Stats for ' + event.target.value + ' are unavailable');
+          this.covidMonitStats.confirmed = '--';
+          this.covidMonitStats.recovered = '--';
+          this.covidMonitStats.deaths    = '--';
         }
       );
     } else {
