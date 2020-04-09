@@ -24,18 +24,15 @@ export class AppComponent implements OnInit {
         this.lastUpdate += dat + '"';
       }
     );
-    // console.log(this.globalLatest);
   }
   countries = [];
   title = 'covid-monit';
 
   changeStats(event): void {
     if (event.target.value !== 'global') {
-      // alert(event.target.value);
       this.covidMonit.countryTotal(event.target.value)
       .subscribe(
         (dat) => {
-          // alert(this.lastUpdate);
           this.covidMonitStats.confirmed = dat
           .result[this.lastUpdate.replace(/['"]+/g, '')].confirmed;
           this.covidMonitStats.recovered = dat
@@ -56,13 +53,9 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.countries = Countries;
     this.covidMonit.globalTotal().subscribe((dat) => {
-      // console.log(dat);
       this.covidMonitStats.confirmed = dat.result.confirmed;
       this.covidMonitStats.recovered = dat.result.recovered;
       this.covidMonitStats.deaths    = dat.result.deaths;
     });
-    // this.covidMonit.lastRecordDate().subscribe(
-    //   (dat: string) => this.lastUpdate = dat
-    // );
   }
 }
