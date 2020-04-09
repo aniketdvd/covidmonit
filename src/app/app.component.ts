@@ -10,7 +10,7 @@ import { CovidMonitStats } from './CovidMonitStats';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  public lastUpdate: any = '"';
+  public lastUpdate: any /*= '"'*/;
   covidMonitStats: CovidMonitStats;
   constructor(private covidMonit: CovidApiService, private http: HttpClient) {
     this.covidMonit.globalTotal().subscribe(
@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
       { responseType: 'text' }
     ).subscribe (
       (dat) => {
-        this.lastUpdate += dat + '"';
+        this.lastUpdate /*+*/= dat /*+ '"'*/;
       }
     );
   }
@@ -34,11 +34,11 @@ export class AppComponent implements OnInit {
       .subscribe(
         (dat) => {
           this.covidMonitStats.confirmed = dat
-          .result[this.lastUpdate.replace(/['"]+/g, '')].confirmed;
+          .result[this.lastUpdate].confirmed;
           this.covidMonitStats.recovered = dat
-          .result[this.lastUpdate.replace(/['"]+/g, '')].recovered;
+          .result[this.lastUpdate].recovered;
           this.covidMonitStats.deaths    = dat
-          .result[this.lastUpdate.replace(/['"]+/g, '')].deaths;
+          .result[this.lastUpdate].deaths;
         }
       );
     } else {
